@@ -82,6 +82,11 @@ onMounted (() => {
     mouse.y = e.y;
   });
 
+  window.addEventListener("touchmove", e => {
+    mouse.x = e.changedTouches[0].pageX;
+    mouse.y = e.changedTouches[0].pageY;
+  });
+
   gsap.ticker.add(() => {
     // adjust speed for higher refresh monitors
     const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
