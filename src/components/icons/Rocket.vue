@@ -69,6 +69,8 @@ import {onMounted} from "vue";
 onMounted (() => {
   gsap.set("#rocketgroup", {xPercent: -50, yPercent: -1});
   const rocket = document.getElementById("rocketgroup");
+  const trails = document.getElementById("trail");
+  const flame = document.getElementById("flame");
   const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   const mouse = { x: pos.x, y: pos.y };
   const speed = 0.05;
@@ -80,11 +82,6 @@ onMounted (() => {
   window.addEventListener("mousemove", e => {
     mouse.x = e.x;
     mouse.y = e.y;
-  });
-
-  window.addEventListener("touchmove", e => {
-    mouse.x = e.changedTouches[0].pageX;
-    mouse.y = e.changedTouches[0].pageY;
   });
 
   gsap.ticker.add(() => {
@@ -105,7 +102,23 @@ onMounted (() => {
       lastDx = dx;
       lastDy = dy;
     }
+
+    const trail_paths = trails?.children
+    const trail_scale = (Math.log(Math.abs(dx) * dt) < 0.3) ? 0.3 : Math.log(Math.abs(dx) * dt);
+    const flame_scale = (Math.log(Math.abs(dx) * dt) < 0.5) ? 1 : Math.log(Math.abs(dx) * dt);
+    if(trail_paths){
+      for(let i = 0; trail_paths.length > i; i++){
+        gsap.to(trail_paths[i], {scaleY: trail_scale, duration: 0.5});
+      }
+    }
+    gsap.to(flame, {scaleY: flame_scale, duration: 0.5})
   });
+
+  window.addEventListener("touchmove", e => {
+    mouse.x = e.changedTouches[0].pageX;
+    mouse.y = e.changedTouches[0].pageY;
+  });
+
 })
 
 
