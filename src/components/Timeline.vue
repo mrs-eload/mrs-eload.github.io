@@ -33,7 +33,7 @@ function onEditClick() {
 
 onMounted(() => {
   gsap.to("#rocketgroup", {
-    duration: 5,
+    duration: 8,
     ease: "power1.inOut",
     immediateRender: true,
     motionPath: {
