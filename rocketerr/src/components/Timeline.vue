@@ -11,7 +11,7 @@
 </template>
 
 <style lang="scss">
-@import "@/assets/timeline.scss";
+@import "@/assets/timeline";
 </style>
 
 <script setup lang="ts">

@@ -21,7 +21,7 @@ import RocketPath from "@/components/icons/RocketPath.vue";
 </template>
 
 <style lang="scss">
-@import "@/assets/space.scss";
+@import "@/assets/space";
 </style>
 <script>
 </script>
